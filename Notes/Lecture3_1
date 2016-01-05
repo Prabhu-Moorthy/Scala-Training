@@ -1,0 +1,117 @@
+Dynamic method dispatch
+-------------------------
+When a class extends another class which method to execute is decided only at runtime, this is called Dynamic method dispatch
+
+Abstract Classes
+----------------
+Abstract classes can contain members without an implementation as the same way in java
+
+Eg.,
+----
+abstract class IntSet{
+    def incl(x: Int): IntSet
+    def contains(x: Int): Boolean
+}
+
+Instance of abstract classes cannot be created with the new operator
+
+def v = new Intset //not possilbe
+
+Class Extension
+---------------
+Abstract classes must be implemented before an instance can be created for them.
+For the purpose of this lesson we will take the example of a binary tree with the below notation
+The trees are always sorted and for each node the nodes on the right hand side are always higher then the node and the nodes no the left
+side are always lesser thatn the node.
+
+            7
+          /   \
+         5    11
+        / \   / \
+       E  E  9  13
+            / \ / \
+           E  E E  E
+
+For creating a program to represent this binary tree we need to write 2 classes to denot 2 types of nodes
+1) An empty node
+2) A non empty node
+
+An empty node
+-------------
+class Empty extends IntSet {
+  override def incl(x: Int): IntSet = new NonEmpty(x,new Empty,new Empty)
+
+  override def contains(x: Int): Boolean = false
+
+  override def toString = "."
+}
+
+A non empty node
+----------------
+class NonEmpty(elem:Int,left: IntSet,right: IntSet) extends IntSet {
+  override def incl(x: Int): IntSet =
+    if(x < elem) new NonEmpty(elem,left incl x,right)
+    else if(x > elem) new NonEmpty(elem,left,right incl x)
+    else this
+
+  override def contains(x: Int): Boolean =
+    if(x < elem) left contains x
+    else if(x > elem) right contains x
+    else true
+
+  override def toString = "{" + left + elem + right + "}"
+}
+
+Subclass and SuperClass
+------------------------
+In the above code both Empty and NonEmpty are sub classes of IntSet.
+We can also say that IntSet is the super class of Empty and Nonempty.
+Like java all classes are superclasses of the Object class.
+Therefore the baseclass of the class NonEmpty is IntSet class and Object class
+Which means that both Empty and NonEmpty conform to the type IntSet which means that an object of type Empty
+or NonEmpty can be used where the object IntSet is required.
+
+Implementation and Overriding
+-----------------------------
+abstract class Base{
+def foo = 1
+def bar: Int
+}
+
+class Sub extends Base{
+override def foo = 2;
+def bar = 2;
+}
+
+If we have to redefine the functionality which has allready been defined in the base class in the Subclass then
+we have to use the Override keyword.
+
+Object Definitions
+------------------
+object Empty extends IntSet {
+  override def incl(x: Int): IntSet = new NonEmpty(x,new Empty,new Empty)
+
+  override def contains(x: Int): Boolean = false
+
+  override def toString = "."
+}
+
+If you see the program<<Refer worksheet>> we see that the Empty instance is repeatedly used with the same value.
+So it does not make sense to creat multiple instances of the same class.
+In Scla it is easy to create a Singleton object.
+We just have to replace the keyword "class" with the keyword "object".
+
+Now Empty acts as a singleton object and only one instance is created.
+We can now use Empty without the new keyword
+
+new NonEmpty(x,Empty,Empty)
+
+Standalone program in scala
+----------------------------
+In Scala we can create a standalone progam as follows
+object Hello {
+  def main(args: Array[String]) = println("Hello World")
+}
+
+
+
