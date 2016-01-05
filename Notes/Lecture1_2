@@ -1,0 +1,191 @@
+Elements of Programming
+-----------------------
+primitive expressions --> representing the simplest elements
+ways to combine expressions
+ways to abstract expressions --> which introduces names to expressions which it can be referred to
+REPL --> Read Eval Print Loop
+
+Definitions
+-----------
+	Eg., how variables are defined in Scala
+	---------------------------------------
+	def pi = 3.14
+	def radius = 10
+
+Evaluation
+----------
+Basic algebra evaluation
+
+	Eg., of evaluation in Scala
+	------------------------------
+	(2 * pi) * radius
+	(2 * 3.14) * radius <-- first pi is replaced with its value
+	(6.28) * radius <-- Then the operation is performed on the left
+	6.28 * 10 <-- value of radius is substituted
+	62.8
+	
+Definitions can also have parameters in Scala
+---------------------------------------------
+	For Eg.,
+	--------
+	def square(x: Double) = x * x
+	square(2)
+	square(2+2)
+	square(square(2))
+	
+	def sumOfSquares(x:Double,y:Double) = square(x) + square(y)
+	
+Function parameters come with a type in Scala
+---------------------------------------------
+def power(x:Double,y:double):Double = ...
+as you can see return types can also be given for Functions
+
+primitive types are as in Java but are capitalized
+Int << 32 bits
+Double << 64 bit
+Boolean << true or false
+
+Evaluation of Functional parameters
+------------------------------------
+This is similar to how arguments are evaluated.
+1) Evaluate all function arguments from left to right
+2) Replace the function appln by the functions right hand side and at the same time
+3) Replace the formal parameters of the function with the actual arguments
+
+	Eg.,
+	----
+	1) sumOfSquares(3,3+1)
+	2) sumOfSquares(3,4) --> step 1
+	3) square(3) + square(4) --> step 2 and 3
+	4) 3 * 3 + square(4)
+	5) 9 + square(4)
+	6) 9 + 4 * 4
+	7) 9 + 16
+	8) 25
+	
+Substitution Model
+------------------
+This kind of evaluation is known as substitution model
+Substitution model applies to all expressions as long as there is no side effects
+The foundation of functional programming is in this model
+
+Side effect
+-----------
+	Eg.,
+	----
+	c++ --> this expression cannot be expressed by substitution model without using another variable
+			hence it was ruled out of Scala to adher to Substitution model
+			
+Termination
+-----------
+Does every expression evaluate to a value in a finite number of steps ? --> No
+	Eg.,
+	----
+	def loop: Int = loop
+	
+Changing the evaluation strategy
+--------------------------------
+If you see above in Evaluation of functional paramaters, there are 3 steps that are followed when a 
+function is evaluated in Scala
+1) Evaluate all function arguments from left to right
+2) Replace the function application by the right hand side and at the same time
+3) Replace the formal paramaters of the function with the actual arguments
+
+This however is not the only strategy in Scala
+One can skip step 1 and apply the function applucation to unreduced arguments
+
+	Eg.,
+	----
+	1) sumOfSquares(3,3+1)
+	2) square(3) + square(3+1) --> step 1 is skipped and 2 and 3 are executed
+	3) 3 * 3 + square(3+1)
+	4) 9 + (3+1) * (3+1)
+	5) 9 + 4 * (3+1)
+	6) 9 + 4 * 4
+	7) 9 + 16
+	8) 25
+	
+Call-by-value and Call-by-name
+------------------------------
+The first evaluation strategy where the function parameters are reduced before being 
+replaced by the right hand side is called Call-by-value
+The second evaluation strategy where the function parameters are not reduced is called
+call-by-name
+
+Both strategies evaluate to the same result as long as
+1) the reduced expression consists of pure functions
+2) both evaluations terminate
+
+Both have advantages over each other
+Call-by-value has the advantage that it evaluates every function argument only once
+Call-by-name has the advantage that a function argument is not evaluated if the 
+corresponding function evaluation is unused in the function body.
+
+Exercise
+--------
+Find which evaluation strategy is fastes(has the fewest reduction steps) for the following expressions
+def test(x:Int,y:Int) = x * x ?
+
+Sum1 --> test(2,3)
+
+CBV:
+1) test(2,3)
+2) 2 * 2
+3) 4
+
+CBN:
+1) test(2,3)
+2) 2 * 2
+3) 4
+
+Ans: Same
+
+Sum2 --> test(3+4,8)
+
+CBV:
+1) test(3+4,8)
+2) test(7,8)
+3) 7 * 7
+4) 49
+
+CBN:
+1) test(3+4,8)
+2) (3+4) * (3+4)
+3) (7) * (3 + 4)
+4) 7 * 7
+5) 49
+
+Ans: CBV Fast
+
+Sum3 --> test(7,2*4)
+
+CBV:
+1) test(7,2*4)
+2) test(7,8)
+3) 7 * 7
+4) 49
+
+CBN:
+1) test(7,2*4)
+2) 7 * 7
+3) 49
+
+Ans: CBN Fast
+
+Sum4 --> test(3+4,2*4)
+
+CBV:
+1) test(3+4,2*4)
+2) test(7,2*4)
+3) test(7,8)
+4) 7 * 7
+5) 49
+
+CBN:
+1) test(3+4,2*4)
+2) (3 + 4) * (3 + 4)
+3) 7 * (3 + 4)
+4) 7 * 7
+5) 49
+	
+Ans : Same

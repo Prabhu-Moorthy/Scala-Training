@@ -1,0 +1,40 @@
+Currying
+--------
+Higher order functions are so essential in many functional programming languages that there is a
+special form to write them.
+
+Let us look at the summation functions that we saw in the last class
+//Higher order sum function
+def sum(f: Int => Int,a:Int,b:Int): Int =
+    if(a > b) 0 else f(a) + sum(f,a+1,b)
+
+def fact(x:Int):Int =
+    if(x == 0) 1 else x * fact(x - 1)
+
+sum (x => x,a,b) // sum of ints
+sum (x => x * x,a,b) //sum of square of ints
+sum (fact, a, b) //sum of factorial of ints
+
+If you see in the above examples we see that the parameters a and b are passed without any change,
+there is a way to get rid of these repetitive parameters.
+
+Functions returning functions
+------------------------------
+Let's rewrite the Higher order function to take an function as input and also to return a fucntion
+def sum(f: Int => Int): (Int, Int) => Int = {
+    def sumF(a:Int, b:Int):Int =
+        if(a > b) 0 else f(a) + sumF(a+1,b)
+    sumF
+}
+
+The above sum function returns the function sumF so to call this function we have to pass parameters
+to the function like
+sum(x => x)(5,10)
+
+The Higher order function can still be simplified as
+def sum(f: Int => Int)(a:Int,b:Int) : Int =
+if(a > b) 0 else f(a) + sum(f)(a+1,b)
+
+Eg., Product of Ints
+---------------------
+def products(f: Int => Int)(a:

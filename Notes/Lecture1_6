@@ -1,0 +1,19 @@
+Blocks and Lexical Scope
+------------------------
+Blocks
+------
+A block is delimited by braces
+{
+val x = f(3)
+x * x
+}
+
+Lexical Scoping
+---------------
+Variables inside a block are only visible inside the block
+where as variables outside the block are visible inside the block unless they are shadowed by same
+name variables inside the block.
+
+Semicolons
+-----------
+Semicolons are optional in Scala

@@ -1,0 +1,84 @@
+Higher order functions
+----------------------
+Functional programming languages treat functions as first class values.
+
+A function which takes a function as input or returns a functions as a value are called as Higher order functions
+Inversely the other type of functions which act on Variables are called First order functions.
+
+Eg., Take the sum of integers between a and b
+----------------------------------------------
+def sumInts(a:Int,b:Int): Int =
+  if(a>b) 0 else a + sumInts(a + 1,b)
+
+sumInts(5,10)
+
+Eg., Take the sum of square of integers between a and b
+--------------------------------------------------------
+def square(x:Int) = x * x
+
+def sumSquares(a:Int,b:Int): Int =
+  if(a>b) 0 else square(a) + sumSquares(a+1,b)
+
+sumSquares(5,10)
+
+Eg., Take the sum of cube of integers between a and b
+--------------------------------------------------------
+def cube(x: Int) = x * x * x
+
+def sumCubes(a:Int,b:Int): Int =
+  if(a>b) 0 else cube(a) + sumCubes(a+1,b)
+
+sumCubes(5,10)
+
+Eg., Take the sum of factorial of integers between a and b
+--------------------------------------------------------
+def fact(x:Int):Int =
+    if(x == 0) 1 else x * fact(x - 1)
+
+def sumFacts(a:Int,b:Int): Int =
+    if(a>b) 0 else fact(a) + sumFacts(a+1,b)
+
+sumFacts(5,10)
+
+If you can see all the above programs fall into a pattern, where only the function that is passed
+which is either an identity(ie.,a) or square or cube or fact which varies.So we can write a function
+which takes a function as a parameter to simplify this program
+
+Eg., Higher order sum function
+-------------------------------
+def sum(f: Int => Int,a:Int,b:Int):Int =
+    if(a>b) 0 else f(a) + sum(f,a + 1,b)
+
+The above functions is called as a Higher order function because it takes a function as the input and because
+of that we can pass whatever function we want to sum to the sum fucntion.<<See worksheet for example>>
+
+The first parameter to the sum function ie., f is a function which is denoted by the '=>' symbol
+suffixed and prefixed by the type that the function that it takes and returns.
+
+Anonymous Functions
+-------------------
+In scala functions are very common and because of that we needing to defina a function every time is very
+tedious so, there is a concept called anonymous functions.
+
+Eg., Anonymous function to find the cube of an int
+--------------------------------------------------
+(x:Int) => x * x * x
+
+The type of an anonymous function can be omitted if it can be inferred by the compiler from the contxt
+(x) => x * x * x
+
+if there are several paramaters then they are separated by commas
+(a:Int,b:Int) => a + b
+or else just
+(a,b) => a + b
+
+In Higher order functions the bare functions should be written which is tideous, so to avoid this we can
+use anonymous functions in Higher order function.
+
+Eg., Rewriting higher order functions with anonymous function
+-------------------------------------------------------------
+
+
+Syntactic Sugar
+---------------
+Anonymous functions can always be expressed with a def so anonymous functions are called as Syntactic Sugar.

@@ -1,0 +1,43 @@
+Functions and Data
+--------------------
+
+Classes
+--------
+Classes can be defied in scala like in Java
+
+class Rational(x:Int,y:Int){
+  def numer = x
+  def denom = y
+}
+
+Here Rational is a type with a constructor which assigns values to numer and denom.
+
+Objects
+-------
+Objects in Scala can be created like in Java using the new operator
+new Rational(1,2)
+
+A function can be created that takes as Input the Rational types and outputs another Rational type
+
+def addRational(a: Rational,b:Rational) = {
+  def numerSum = (a.numer * b.denom) + (b.numer * a.denom)
+  def denomSum = a.denom * b.denom
+  numerSum.toString + "/" + denomSum.toString
+}
+
+Also this function instead of being separate can be written inside the type Rational and then it would
+be called as a method
+
+class Rational(x:Int,y:Int){
+  def numer = x
+  def denom = y
+
+  def sum(that:Rational):Rational = {
+    new Rational(numer * that.denom +
+      that.numer * denom,denom * that.denom)
+  }
+
+  override def toString = numer + "/" + denom
+}
+
+DRY Principle = Dont Repeat Yourself principle

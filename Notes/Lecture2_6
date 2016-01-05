@@ -1,0 +1,40 @@
+More Fun with Rational numbers
+------------------------------
+
+Data Abstraction
+----------------
+We are taking the same exaple from the previous lecture and adding private methods to the class Rational.
+These private methods are not visible to the clients and this is called Data Abstraction.
+
+The private method added is 'gcd' which computes the gcd of the 2 number during the creation of the type Rational.
+Also methods less and max are added to provide more functionality to the Rational calss.
+
+like in other OO languages to refer to the current object we this this keyword in Scala
+
+Preconditions
+-------------
+predefined function require
+We can use require function to check for preconditions during class initilization
+
+like require there is another predefined function 'assert' which is also used similar to require
+
+The difference between the 2 is that
+require is used to enforce a precondition on the caller of a function
+where as
+assert is used to check the code of the function itself --> mainly used for testing
+also require throws an IllegalArgument exception where as assert throws an assertion failed error.
+
+require means that it is the callers fault where as assertion fail means that the function has errors
+
+Constructors
+------------
+By default all classes in Scala have a primary constructor which takes the paramaters of the class and execures the class.
+In our example the primary constructor of the class Rational takes x and y as paramaters as arguments and executes the class body.
+
+We can also create multiple constructors like in java however the syntax varies.
+
+the this keyword when used as a method acts as a constructor for the class.
+
+Eg., other constructors
+------------------------
+def this(x:Int) = this(x,1)

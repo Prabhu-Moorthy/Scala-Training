@@ -1,0 +1,29 @@
+<<We will be using the same example form the previous lecture>>
+Operators
+---------
+If x and y are integers then we can write x + y
+but
+if r and s are rational numbers then we need to write r.sum(s) which is not very natural.
+In Scala we can eleminate this difference as follows
+
+Infix notation
+--------------
+In sala any method with an operator can be used as an infix operator
+r.add(s) can be written as r add s
+r.less(s) can be written as r less s
+
+Relaxed Identifiers
+-------------------
+In Scala operators can be used as identifiers(ie., either as function or method names or variable names)
+Alphanumeric Identifiers : Normally identifiers are Alphanumeric meaning that they start with a letter and
+are followed by a sequence of letters or numbers.
+Symbolic Identifiers : In scala we have Symbolic identifiers which can start with a symbol and are
+followed by other operators
+'_' counts as a letter
+Alphanumeric characters can end in an underscore followed by operators.
+For example of valid operators see worksheet.
+
+Precedence
+-----------
+The precedence of an operator is determined by its first character
+Other rules are as in java

@@ -1,0 +1,46 @@
+In Lecture1.2 we saw about Call-by-value and Call-by-name, now we will see Termination related to both of
+the strategies.
+
+CBV and CBN Termination
+-----------------------
+Both evaluation strategies will evaluate to the same value as long as both the evaluations terminate.
+But what if termination is not guaranteed ? (eg., def loop: Int = loop
+
+Theorem:
+If the Call-by-value of an expression terminates then the Call-by-name strategy will also terminate
+where as the reverse is not true.
+
+	Eg., Expression that terminates under CBN but not under CBN
+	-----------------------------------------------------------
+	def first(x:Int, y:Int) = x
+	
+	first(1,loop)
+	
+	CBV
+	---
+	1) first(1,loop) --> will replace loop by itself and will never terminate
+	
+	CBN
+	---
+	1) first(1,loop)
+	2) 1
+	
+	Therefore in the above example CBN terminates and CBV does not terminate
+	
+Scala normally uses Call by value where an expression is reduced first.
+In cases where you need to use Call-by-name you can use the => symbol.
+
+	Eg.,)
+	-----
+	def constOne(x:Int,y:=> Int) = x
+	constOne(1,loop) --> will result in 1
+	
+	Exercise:
+	---------
+	Sum1: constOne(1+2,loop)
+	1) constOne(1+2,loop)
+	2) constOne(3,loop)
+	3) 3
+	
+	Sum2: const(loop,1+2)
+	1) const(loop,1+2) --> does not terminate

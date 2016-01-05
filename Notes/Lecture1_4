@@ -1,0 +1,41 @@
+Conditional Expressions
+------------------------
+if - else
+----------
+Looks like an if else in jva but in Scala if else is used for expressions not statements.
+
+	For Eg.,)
+	---------
+	def abs(x:Int) = if(x>0) x else -x
+	
+Value Definitions
+------------------
+Similar to Call-by-value evaluation strategy and Call-by-name strategy we have
+a Call-by-value value definition and Call-by-name value definition.
+
+So, far we used def 
+	For Eg.,
+	-------
+	def x = 2
+	def y = square(x)
+	
+	this is Call-by-name because the right hand side of the functionis not reduced initially.
+	
+The Call-by-value alternative is to use val 
+	For Eg.,
+	--------
+	val x = 2
+	val y = square(x)
+
+	this translates to y = x * x
+	
+The difference between def and val becomes aparent when the right hand side does not terminate.
+	For Eg.,
+	--------
+	def loop: Boolean = loop
+	
+	def x = loop --> nothing will happen, just that loop has been given a new name
+	
+	where as
+	
+	val loop: Boolean = loop --> will not terminate

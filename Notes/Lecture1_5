@@ -1,0 +1,10 @@
+Exercise
+---------
+Calculate the square root of a parameter 
+def sqrt(x: Double): Double = ...
+This can be done using successive approximations
+
+Refer to worksheet Lecture1_5 for sample squareroot program
+
+
+ 
