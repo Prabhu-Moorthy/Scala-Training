@@ -17,4 +17,4 @@
     sqrtIter(1.0)
   }
 
-  sqrt(2)
+  sqrt(5)
