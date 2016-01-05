@@ -1,0 +1,11 @@
+Packages
+--------
+Classes and objects are organized in packages like in java.
+
+Eg.,
+----
+package pkg1.mine
+
+object Hello { ... }
+
+To access this class then we need to use pkg1.mine.Hello
