@@ -112,6 +112,3 @@ In Scala we can create a standalone progam as follows
 object Hello {
   def main(args: Array[String]) = println("Hello World")
 }
-
-
-
