@@ -1,0 +1,43 @@
+Polymorphism
+------------
+
+To understand Polymorphism in Scala we will take the example of a Cons-List.
+
+Cons-List
+---------
+It is constructed from 2 building blocks.
+Nil     -   Empty list.
+Cons    -   A cell containing an element and a remainder of the list.
+
+Eg.,
+----
+To implement a cons-list of integers we will need
+
+trait IntList ...       ---> A base trait
+class Cons(val head:Int, val tail: IntList) extends IntList ---> A class which extends the Trait IntList and
+                                                                 takes as arguments the first element of the
+                                                                 list which is an Int and the second element
+                                                                 of the list which is a remainder of the list
+                                                                 which is of type IntList.
+class Nil extends IntList   --> To represent end of list.
+
+Value Parameters
+----------------
+If we notice in the above class Cons we have declared
+Cons(val head:Int,val tail: IntList) in the parameter argument itself instead of doing like
+Cons(_head: Int,_tail: IntList) extends IntList{
+    val head = _head
+    val tail = _tail
+}
+
+declaring like the first way is also allowed in Scala
+
+If we see the types IntList,Cons and Nil are too narrow because they get only Int types
+which is not scalable. To make these types generic we have to do like
+
+trait List[T]
+class Cons[T](val head: T, val tail: List[T]) extends List[T]
+class Nil[T] extends List[T]
+
+It is not necessary to have the type parameter as T, we could have any name but
+[T] is common

@@ -18,3 +18,83 @@ All members of the singleton object scala.Predef
 
 Earlier in a class we saw the function require which we used
 require is from the package scala.Predef
+
+Traits
+------
+A trait is like an interface.
+In Scala we can extend only one super class like in java
+but in scenarios where we need to implement the properties of more than one super classes then
+we need to define a trait.
+
+Eg.,
+----
+trait Planar {
+def height: Int
+def width: Int
+def surface = height * width
+}
+
+The syntax of a trait is similar to that of an abstract class except the keyword trait should be used.
+
+The syntax of extending a trait is as follows
+
+class Square extends Shape with Planar with Movable
+
+Scala Class Hierarchy
+----------------------
+                                 scala.Any
+                               ^            ^
+                              /              \
+                             /                \
+                            /                  \
+                 scala.AnyVal                   scala.AnyRef(java.lang.Object)
+  scala.Double  -|  |- scala.Unit         scala.ScalaObject-|          |- java.lang.String
+  scala.Float   -|  |- scala.Boolean         ^             -|          |- other Java classes
+  scala.Long    -|  |- scala.Char            |             -|
+  scala.int     -|<.........|             scala.Iterable----|
+  scala.Short   -|                        scala.Seq        -|
+  scala.Byte    -|                        scala.List       -|
+
+
+                  ^      ^                ^       ^
+                   \    /                  \     /
+                    \  /                    \   /
+                scala.Nothing------------->scala.Null
+
+In scala classes are organises in a hierarchy
+scala.Any is the super class of all other classes
+scala.AnyVal is the super class of all the primitive types from java
+scala.AnyRef is the super class of all other java slasses like String and other scala classes
+
+scala.Nothing and scala.Null are the sub types of all other types.
+
+All the primitive types that we see on the left side are type conversion enables(ie., from one type we can
+convert to other types) like auto boxing in java.
+
+Top Types
+---------
+Any --> the base type of all types(like Object in Java)
+    Methods(mostly similar to java)
+    -------
+    ==,!=,equals,hashCode,toString
+
+AnyRef --> The base type of all reference types
+
+AnyVal --> The base type of all primitive types
+
+The Nothing Type
+----------------
+The use of Nothing type is to signal abnormal termination
+
+The Null Type
+-------------
+Null is a subtype of every type in java that inherits from Object.
+Which means that if a function expects any object then we can pass null in ints place.
+
+Exceptions
+----------
+Exceptions in Scala and Java are similar
+
+Eg.,
+----
+throw Exc(some exception value)
