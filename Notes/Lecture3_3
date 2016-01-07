@@ -21,8 +21,8 @@ class Cons(val head:Int, val tail: IntList) extends IntList ---> A class which e
                                                                  which is of type IntList.
 class Nil extends IntList   --> To represent end of list.
 
-Value Parameters
-----------------
+Value/Type Parameters in classes
+---------------------------------
 If we notice in the above class Cons we have declared
 Cons(val head:Int,val tail: IntList) in the parameter argument itself instead of doing like
 Cons(_head: Int,_tail: IntList) extends IntList{
@@ -30,7 +30,7 @@ Cons(_head: Int,_tail: IntList) extends IntList{
     val tail = _tail
 }
 
-declaring like the first way is also allowed in Scala
+Declaring like the first way is also allowed in Scala
 
 If we see the types IntList,Cons and Nil are too narrow because they get only Int types
 which is not scalable. To make these types generic we have to do like
@@ -41,3 +41,45 @@ class Nil[T] extends List[T]
 
 It is not necessary to have the type parameter as T, we could have any name but
 [T] is common
+
+Type Parameters in Functions
+----------------------------
+Not only classes, functions can also be have type parameters
+
+Eg.,
+----
+def singleton[T](elem:T) = ...
+
+In the above example the method Singleton takes as input one element which can be of any type.
+When we need to call this function we can call like
+
+singleton[Int](1)
+singleton[Boolean](false)
+
+However since Scala is brilliant we can leave off the type definitions when calling the function
+because Scala will be able to figure out that information based on the value that is passed.
+
+We can instead make a call to this function like
+
+singleton(1)
+singleton(false)
+
+Difference between Val and Def
+------------------------------
+Val is evaluated when the object is first initialized where as
+Def is evaluated each time it is referenced.
+
+Types and Evaluations(Type Erasure)
+----------------------------------
+The tupe parameters do not effect the evaluation in Scala.
+Type parameters and type arguments are removed before evaluating the program.
+This is called type erasure.
+
+Polymorphism
+------------
+Since what function will be called is been based on the parameter passed, this is called polymorphism
+beause the same function can be in different forms.
+
+We have seem 2 main types of polymorphism so far.
+subtyping --> Instance of a subtype can be passed to the base class<<lecture 3_1 similar to dynamic method dispatch>>
+generics --> the function is identified based on the type parameter
