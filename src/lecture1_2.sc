@@ -1,5 +1,4 @@
   println("Welcome to the Scala worksheet")       //> Welcome to the Scala worksheet
-
   34 + 59                                         //> res0: Int(93) = 93
 
   def radius = 10                                 //> radius: => Int
@@ -7,7 +6,6 @@
 
   def pi = 3.14                                   //> pi: => Double
   pi                                              //> res2: Double = 3.14
-
   (2 * pi) * radius                               //> res3: Double = 62.800000000000004
 
   def square(x:Double) = x*x                      //> square: (x: Double)Double
@@ -18,11 +16,9 @@
   def sumOfSquares(x:Double,y:Double) = square(x) + square(y)
   //> sumOfSquares: (x: Double, y: Double)Double
   sumOfSquares(3,3+1)                             //> res7: Double = 25.0
-
   //example of an expression which will never terminate.
   def loop:Int = loop;                            //> loop: => Int
   //loop
-
   //Lecture 1.3
   def first(x:Int,y:Int) = x                      //> first: (x: Int, y: Int)Int
   //Default strategy by Scala is CBV so the below statement will never terminate

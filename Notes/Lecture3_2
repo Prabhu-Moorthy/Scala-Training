@@ -1,11 +1,20 @@
 Packages
 --------
-Classes and objects are organized in packages like in java.
+Classes and Objects are organized as packages like in Java.
 
 Eg.,
 ----
-package pkg1.mine
+package pkg1
 
-object Hello { ... }
+when we need to import all the classes in a package we need to use pkg1._ instead of pkg1.* like how we use in java.
+To import multiple classes in a package we can use curly braces
+pkg1.{class1,class2}
 
-To access this class then we need to use pkg1.mine.Hello
+Automatic Imports
+-----------------
+All members of the package Scala
+All members of the package java.lang
+All members of the singleton object scala.Predef
+
+Earlier in a class we saw the function require which we used
+require is from the package scala.Predef
