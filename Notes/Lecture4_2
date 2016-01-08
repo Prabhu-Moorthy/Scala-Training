@@ -1,0 +1,19 @@
+Pure Object Orientation
+-----------------------
+A pure object oriented language is one in which every value is an object.
+If the language is based on Classes then this means that type if each value is a class.
+
+Booleans and Primitive types in Scala can be represented conceptually by Scala classes.
+
+Pure Booleans
+-------------
+Conceptually, types in Scala such as Int and Boolean do not receive any special treatment.
+They are like any other classes defined in the Scala package.
+
+In scala the type Boolean maps to the JVM's primitive type boolean.
+
+But one can define it as a class from first principle.
+
+<<See worksheet for example of a class which represents natual numbers>>
+
+

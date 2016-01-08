@@ -8,6 +8,6 @@ new Square().calc
 //If you see since the method error
 //is abnormally terminated the return type
 //is Nothing
-def errors(msg: String) = throw new NullPointerException(msg);
+def errors(msg: String) = throw new NullPointerException(msg)
 
 errors("Hello")

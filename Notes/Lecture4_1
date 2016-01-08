@@ -1,0 +1,21 @@
+See Lecture4_2 before contuning
+
+Functions as Objects
+--------------------
+Scala is also a pure Object oriented language.
+
+Like how in Lecture4_2 we saw that primitive types and booleans can be conceptually represented as Scala classes
+functions can also be represented as scala Classes. This is not conceptually, but in reality functions
+in Scala are represented as scala classes.
+
+For Eg.,
+--------
+The function type A => B(ie., func A => B) is just an abbrevation for the class
+scala.Function[A,B] which is defined as
+
+package Scala
+trait Function[A,B]{
+    def apply(x:A): B
+}
+
+From the above we see that functions are objects with apply methods
