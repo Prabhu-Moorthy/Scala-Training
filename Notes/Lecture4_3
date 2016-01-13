@@ -1,0 +1,57 @@
+Polymorphism Contd..
+--------------------
+subtyping --> Instance of a subtype can be passed to the base class.
+generics --> the function is identified based on the type parameter.
+
+There is a level of interaction between these 2 types of polymorphism and they are
+divided into 2 categories
+1) Bounds
+2) Variance
+
+Type Bounds
+-----------
+To understand Bounds consider a method assertAllPos which
+1) takes as input an IntSet
+2) returns the IntSet itself if all the elements are positive
+3) throws an exception otherwise
+
+In most cases a definition like below would be fine
+
+assertAllPos(s: IntSet): IntSet
+
+The method is governed by 2 laws
+Either s is Empty then it will return Empty
+
+    ie.,) assertAllPos(Empty) = Empty
+
+Or s is a NonEmpty Set then it will return the same NonEmpty Set if all the elements are positive or will
+throw an Exception
+
+    ie.,) assertAllPos(NonEmpty[...]) = NonEmpty[...] or Exception
+
+The function that we defined earlier ie.,) assertAllPos(s: IntSet): IntSet is very generic
+to be more specific and also to give mode details about the 2 laws that govern the function
+we can write the same function as below
+
+    ie.,) assertAllPos[S <: IntSet](r: S): S = ...
+
+Here the notation "S <: IntSet" is an upperbound of the type parameter S.
+Which means that S is a subtype of IntSet
+There is also a "S >: T" notation which means that S is a supertype of T.
+
+Covariance
+----------
+In Scala Arrays are not covariant.
+As per Liskov's Substitution Principle
+---------------------------------------
+If A <: B then everything one could do with a value of type B one should also be able to
+do with a value of type A.
+
+Which basically means that in Scala if we have an array
+Arrays[NonEmpty] <: Arrays[Empty]
+
+Then we should be able to do with an Empty array whatever we can do with the NonEmpty array.
+Since this is not possible the above statement is not allowed in Scala.
+
+Therefore if an array is created as an IntSet array then we can only put IntSet elements into that
+array and we cannot put Empty elements into that Array.
