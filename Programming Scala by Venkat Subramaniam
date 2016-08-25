@@ -15,4 +15,8 @@ pure functional style
 
 Scala is a statically typed language, but, unlike Java, it has sensible static typing.
 Semicolon is optional, dot is optional and parenthesis is optionsl
-instead of writing s1.equals(s2);, we can write s1 equals s2. By losing the semicolon, the parentheses, and the dot
+instead of writing s1.equals(s2);, we can write s1 equals s2. By losing the semicolon, the parentheses, and the dot.
+
+val keyword is immutable.
+Functions are first-class citizens in Scala.
+Functions are pure in Scala.
